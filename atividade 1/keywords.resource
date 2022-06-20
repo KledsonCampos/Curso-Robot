@@ -27,7 +27,6 @@ Clicar no botão de pesquisa
 
 Verificar o resultado da pesquisa se está listando o produto "${produto}"
     Wait Until Element Is Visible   locator=(//span[@class='a-size-base-plus a-color-base a-text-normal'][contains(.,'${produto}')])[1]
-    # //span[@class='a-color-state a-text-bold'][contains(.,'"Console Xbox Series S"')]
     
 Adicionar o produto "${produto}" no carrinho
     Click Element   locator=(//span[@class='a-size-base-plus a-color-base a-text-normal'][contains(.,'${produto}')])[1]
@@ -35,9 +34,12 @@ Adicionar o produto "${produto}" no carrinho
     Click Element   locator=//input[contains(@name,'submit.add-to-cart')]
 
 Verificar se o produto "${produto}" foi adicionado com sucesso
-   Wait Until Element Is Visible   locator=//span[@class='a-size-medium-plus a-color-base sw-atc-text a-text-bold'][contains(.,'Adicionado ao carrinho')] 
-   Click Element    locator=//a[@href='/gp/cart/view.html?ref_=sw_gtc'][contains(.,'Ir para o carrinho')] 
-   Wait Until Element Is Visible    locator=//span[@class='a-truncate-cut'][contains(.,'${produto}')]
-#    //span[contains(@class,'nav-cart-count nav-cart-1 nav-progressive-attribute nav-progressive-content')]   
+    Wait Until Element Is Visible   locator=//span[@class='a-size-medium-plus a-color-base sw-atc-text a-text-bold'][contains(.,'Adicionado ao carrinho')] 
+    Click Element    locator=//a[@href='/gp/cart/view.html?ref_=sw_gtc'][contains(.,'Ir para o carrinho')] 
+    Wait Until Element Is Visible    locator=//span[@class='a-truncate-cut'][contains(.,'${produto}')]
 
+Remover o produto "${produto}" do carrinho
+    Click Element    locator=//input[@value='Excluir']
 
+Verificar se o carrinho fica vazio
+    Wait Until Element Is Visible   locator=//h1[@class='a-spacing-mini a-spacing-top-base'][contains(.,'Seu carrinho de compras da Amazon está vazio.')]
